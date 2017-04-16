@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 import LineChart from './components/LineChart';
@@ -22,20 +22,23 @@ class App extends Component {
       yMax: 30
     };
     return (
-      <LineChart
-        data={data}
-        width={600}
-        height={300}
-      />
-      // <div className="App">
-      //   <div className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <h2>Welcome to React</h2>
-      //   </div>
-      //   <p className="App-intro">
-      //     To get started, edit <code>src/App.js</code> and save to reload.
-      //   </p>
-      // </div>
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+          This is d3!
+        </p>
+        <div>
+          <LineChart
+            data={data}
+            width={600}
+            height={300}
+          />
+        </div>
+      </div>
     );
   }
 }
