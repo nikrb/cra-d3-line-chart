@@ -7,11 +7,6 @@ class DataSeries extends React.Component{
   render = () => {
     let { data, colors, xScale, yScale, interpolationType } = this.props;
 
-    // work around for d3.scale.category10 is not a function (SO/questions/20590396)
-    if( typeof colors === "undefined"){
-      // colors = d3.scale.schemeCategory10();
-      colors = d3.scale.category10().domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    }
     let line = d3.svg.line()
       .interpolate(interpolationType)
       .x((d) => { return xScale(d.x); })
@@ -41,11 +36,13 @@ class DataSeries extends React.Component{
     xScale:             PropTypes.func,
     yScale:             PropTypes.func
   };
-  
+
   static defaultProps = {
     data:               [],
-    interpolationType:  'cardinal'
+    interpolationType:  'cardinal',
     // colors:             d3.scale.schemeCategory10
+    // work around for d3.scale.category10 is not a function (SO/questions/20590396)
+    colors : d3.scale.category10().domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
   };
 }
 
