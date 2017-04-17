@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as d3 from 'd3';
+import d3 from 'd3';
 import DataSeries from './DataSeries';
+import XYAxis from './XYAxis';
 
 class LineChart extends React.Component {
   render = () => {
     let { width, height, data } = this.props;
+    const padding = 30;
 
     let xScale = d3.scale.ordinal()
                    .domain(data.xValues)
-                   .rangePoints([0, width]);
+                   .rangePoints([padding, width - padding*2]);
 
     let yScale = d3.scale.linear()
-                   .range([height, 10])
+                   .range([height - padding, padding])
                    .domain([data.yMin, data.yMax]);
 
     return (
@@ -23,7 +25,15 @@ class LineChart extends React.Component {
             data={data}
             width={width}
             height={height}
-            />
+          />
+          <XYAxis
+            xScale={xScale}
+            yScale={yScale}
+            data={data}
+            width={width}
+            height={height}
+            padding={padding}
+          />
       </svg>
     );
   };
